@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://hb85fhgg11qg"]
+
+[ext_resource type="PackedScene" uid="uid://k8x1b7ff6vv" path="res://Scenes/car.tscn" id="1_1fdbi"]
+[ext_resource type="Script" uid="uid://eh8th2u28uab" path="res://Script/traffic_car.gd" id="2_6pcm7"]
+[ext_resource type="Texture2D" uid="uid://bvtblx66wi1ru" path="res://Assets/Topdown_vehicle_sprites_pack/taxi.png" id="2_qtkds"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6pcm7"]
+size = Vector2(83, 210)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5k7fi"]
+size = Vector2(102, 225)
+
+[node name="traffic1" instance=ExtResource("1_1fdbi")]
+script = ExtResource("2_6pcm7")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qtkds")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-4.5, -1)
+shape = SubResource("RectangleShape2D_6pcm7")
+
+[node name="Area2D" parent="." index="2" groups=["traffic"]]
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(-6, -2.5)
+shape = SubResource("RectangleShape2D_5k7fi")

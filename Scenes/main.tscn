@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtu60i7kf85ub"]
+
+[ext_resource type="PackedScene" uid="uid://dj7l8gi1ai1yg" path="res://Scenes/road.tscn" id="1_bo1nx"]
+[ext_resource type="Script" uid="uid://b8u6tvqwh5bx2" path="res://Script/main.gd" id="1_jjvhh"]
+[ext_resource type="PackedScene" uid="uid://k8x1b7ff6vv" path="res://Scenes/car.tscn" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://dtrat8mvttfr5" path="res://Script/car.gd" id="3_8gbba"]
+[ext_resource type="Script" uid="uid://dsn42rtjlxorq" path="res://Script/traffic_spawner.gd" id="5_kry3j"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_jjvhh")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_bo1nx")]
+
+[node name="car" parent="." instance=ExtResource("2_8gbba")]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("3_8gbba")
+
+[node name="car_position" type="Node2D" parent="."]
+position = Vector2(150, 513)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+
+[node name="traffic_spawner" type="Node2D" parent="."]
+script = ExtResource("5_kry3j")
+
+[node name="lane1" type="Node2D" parent="traffic_spawner"]
+position = Vector2(50, -94)
+
+[node name="lane2" type="Node2D" parent="traffic_spawner"]
+position = Vector2(149, -94)
+
+[node name="lane3" type="Node2D" parent="traffic_spawner"]
+position = Vector2(253, -94)
+
+[node name="Timer" type="Timer" parent="traffic_spawner" groups=["timer"]]
+autostart = true
+
+[node name="Timer2" type="Timer" parent="traffic_spawner" groups=["timer"]]
+wait_time = 3.0
+autostart = true
+
+[node name="Timer3" type="Timer" parent="traffic_spawner" groups=["timer"]]
+wait_time = 5.0
+autostart = true
+
+[node name="traffic" type="Node2D" parent="."]
+
+[connection signal="timeout" from="traffic_spawner/Timer" to="traffic_spawner" method="_on_timer_timeout"]
+[connection signal="timeout" from="traffic_spawner/Timer2" to="traffic_spawner" method="_on_timer_2_timeout"]
+[connection signal="timeout" from="traffic_spawner/Timer3" to="traffic_spawner" method="_on_timer_3_timeout"]

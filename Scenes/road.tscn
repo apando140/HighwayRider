@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj7l8gi1ai1yg"]
+
+[ext_resource type="Texture2D" uid="uid://vcgs6mn1layi" path="res://Assets/road.png" id="1_s5bdx"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(0, 640.74)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(147, 323.25)
+scale = Vector2(1, 0.723464)
+texture = ExtResource("1_s5bdx")
